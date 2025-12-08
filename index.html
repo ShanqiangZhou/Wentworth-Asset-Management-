@@ -255,7 +255,7 @@
       color: #555;
     }
 
-    /* ===== 侧边菜单 ===== */
+    /* ===== 侧边菜单（竖向） ===== */
     .side-menu {
       position: fixed;
       top: 0;
@@ -264,20 +264,24 @@
       height: 100vh;
       background: #ffffff;
       box-shadow: 4px 0 12px rgba(0,0,0,0.12);
-      padding: 2rem 1.2rem;
+      padding: 2rem 1.6rem;
       display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
+      flex-direction: column;   /* 竖向排列关键 */
+      gap: 1.4rem;
       transition: left 0.3s ease;
       z-index: 200;
     }
 
     .side-menu a {
-      font-size: 1rem;
-      text-decoration: none;
-      color: #111;
-      letter-spacing: 0.05em;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      color: #111;
+    }
+
+    .side-menu a:hover {
+      opacity: 0.7;
     }
 
     .side-menu.open {
@@ -323,14 +327,12 @@
   </header>
 
   <!-- 侧边菜单 + 遮罩 -->
-  <div class="side-menu" id="sideMenu">
-    <div class="side-menu-inner">
-      <a href="#about">About</a>
-      <a href="#businesses">Businesses</a>
-      <a href="#insights">Insights</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
+  <nav class="side-menu" id="sideMenu">
+    <a href="#about">About</a>
+    <a href="#businesses">Businesses</a>
+    <a href="#insights">Insights</a>
+    <a href="#contact">Contact</a>
+  </nav>
   <div class="overlay" id="overlay"></div>
 
   <!-- Hero：Logo 居中 -->
