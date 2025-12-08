@@ -5,6 +5,7 @@
   <title>Wentworth Asset Management</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --blue-main: #005b96;
@@ -128,7 +129,7 @@
       }
     }
 
-    /* ===== Logo 居中 Hero ===== */
+    /* ===== Hero：Logo 居中 ===== */
     .hero-centered {
       width: 100%;
       min-height: 78vh;
@@ -215,7 +216,7 @@
       color: var(--text-muted);
     }
 
-    /* ===== Insights Section ===== */
+    /* ===== Insights ===== */
     .insight-item {
       padding: 0.6rem 0;
       border-top: 1px solid #eceff5;
@@ -253,46 +254,47 @@
     footer a {
       color: #555;
     }
+
     /* ===== 侧边菜单 ===== */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: 4px 0 12px rgba(0,0,0,0.12);
+      padding: 2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      transition: left 0.3s ease;
+      z-index: 200;
+    }
 
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: -260px;
-  width: 240px;
-  height: 100vh;
-  background: #ffffff;
-  box-shadow: 4px 0 12px rgba(0,0,0,0.12);
-  padding: 2rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-  transition: left 0.3s ease;
-  z-index: 200;
-}
+    .side-menu a {
+      font-size: 1rem;
+      text-decoration: none;
+      color: #111;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
 
-.side-menu a {
-  font-size: 1rem;
-  text-decoration: none;
-  color: #111;
-  letter-spacing: 0.05em;
-}
+    .side-menu.open {
+      left: 0;
+    }
 
-.side-menu.open {
-  left: 0;
-}
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      display: none;
+      z-index: 150;
+    }
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.25);
-  display: none;
-  z-index: 150;
-}
-
-.overlay.active {
-  display: block;
-} 
+    .overlay.active {
+      display: block;
+    }
   </style>
 </head>
 
@@ -319,19 +321,19 @@
       </div>
     </div>
   </header>
-  <!-- 侧边菜单 -->
-<div class="side-menu" id="sideMenu">
-  <div class="side-menu-inner">
-    <a href="#about">About</a>
-    <a href="#businesses">Businesses</a>
-    <a href="#insights">Insights</a>
-    <a href="#contact">Contact</a>
-  </div>
-</div>
 
-<!-- 遮罩层 -->
-<div class="overlay" id="overlay"></div>
-  <!-- Hero：置中显示 Logo -->
+  <!-- 侧边菜单 + 遮罩 -->
+  <div class="side-menu" id="sideMenu">
+    <div class="side-menu-inner">
+      <a href="#about">About</a>
+      <a href="#businesses">Businesses</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Hero：Logo 居中 -->
   <section class="hero-centered">
     <div>
       <img src="logo.png" alt="Wentworth Asset Management" class="hero-logo">
@@ -425,8 +427,8 @@
       <p class="section-text">
         For more information about our investment solutions or institutional services, please contact us:
         <br /><br />
-        Email: wentworth1014@gmail.com<br />
-        Phone: +81-80-4755-2622
+        Email: client@wentworth-am.com<br />
+        Phone: +81-3-XXXX-XXXX
       </p>
     </section>
   </main>
@@ -436,9 +438,8 @@
   </footer>
 
   <script>
-    // 滚动时切换导航栏颜色
+    // 导航栏滚动变色
     const header = document.querySelector('.site-header');
-
     function onScroll() {
       if (window.scrollY > 40) {
         header.classList.add('scrolled');
@@ -446,23 +447,23 @@
         header.classList.remove('scrolled');
       }
     }
-
     document.addEventListener('scroll', onScroll);
     onScroll();
-    <script>
-  const menuIcon = document.querySelector('.menu-icon');
-  const sideMenu = document.getElementById('sideMenu');
-  const overlay = document.getElementById('overlay');
 
-  menuIcon.addEventListener('click', () => {
-    sideMenu.classList.add('open');
-    overlay.classList.add('active');
-  });
+    // 侧边菜单开关
+    const menuIcon = document.querySelector('.menu-icon');
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('overlay');
 
-  overlay.addEventListener('click', () => {
-    sideMenu.classList.remove('open');
-    overlay.classList.remove('active');
-  });
+    menuIcon.addEventListener('click', () => {
+      sideMenu.classList.add('open');
+      overlay.classList.add('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      sideMenu.classList.remove('open');
+      overlay.classList.remove('active');
+    });
   </script>
 
 </body>
