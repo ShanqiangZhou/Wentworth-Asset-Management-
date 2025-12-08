@@ -253,6 +253,46 @@
     footer a {
       color: #555;
     }
+    /* ===== 侧边菜单 ===== */
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.12);
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  transition: left 0.3s ease;
+  z-index: 200;
+}
+
+.side-menu a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #111;
+  letter-spacing: 0.05em;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  display: none;
+  z-index: 150;
+}
+
+.overlay.active {
+  display: block;
+} 
   </style>
 </head>
 
@@ -279,7 +319,18 @@
       </div>
     </div>
   </header>
+  <!-- 侧边菜单 -->
+<div class="side-menu" id="sideMenu">
+  <div class="side-menu-inner">
+    <a href="#about">About</a>
+    <a href="#businesses">Businesses</a>
+    <a href="#insights">Insights</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
 
+<!-- 遮罩层 -->
+<div class="overlay" id="overlay"></div>
   <!-- Hero：置中显示 Logo -->
   <section class="hero-centered">
     <div>
@@ -398,6 +449,20 @@
 
     document.addEventListener('scroll', onScroll);
     onScroll();
+    <script>
+  const menuIcon = document.querySelector('.menu-icon');
+  const sideMenu = document.getElementById('sideMenu');
+  const overlay = document.getElementById('overlay');
+
+  menuIcon.addEventListener('click', () => {
+    sideMenu.classList.add('open');
+    overlay.classList.add('active');
+  });
+
+  overlay.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+    overlay.classList.remove('active');
+  });
   </script>
 
 </body>
